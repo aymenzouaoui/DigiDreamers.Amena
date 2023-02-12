@@ -39,6 +39,18 @@ public class User {
         this.role = role;
     }
 
+    public User(String cin, String adress, String nom, String prenom, Date date_naissance, boolean status, String mot_pass, String email, Role role) {
+        this.cin = cin;
+        this.adress = adress;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.date_naissance = date_naissance;
+        this.status = status;
+        this.mot_pass = mot_pass;
+        this.email = email;
+        this.role = role;
+    }
+
    
 
     public int getId() {
