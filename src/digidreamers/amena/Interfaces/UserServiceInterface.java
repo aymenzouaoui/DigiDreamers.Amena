@@ -16,6 +16,8 @@ import java.sql.SQLException;
 public interface UserServiceInterface {
     public void addUser(User user) throws SQLException;
     public void UpdateUser(User u,int id) throws SQLException, NoSuchAlgorithmException ;
-    public void deleteUser(int id);
+    //public void deleteUser(int id);
+    //public User getUserByName(String name) throws SQLException;
+   // public User getUserByCIN(String cin ) throws SQLException;
     
 }

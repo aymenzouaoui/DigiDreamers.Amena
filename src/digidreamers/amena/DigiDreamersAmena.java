@@ -22,7 +22,7 @@ public class DigiDreamersAmena {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         Date date=new java.sql.Date(new java.util.Date().getTime());
         Role role=new Role(1,"admin");
         User user=new User("12", "tn", "nom", "pren",date , true, "mdp", "a@a",  role);
@@ -30,27 +30,25 @@ public class DigiDreamersAmena {
         
          try{
              UserService userService=new UserService();
-             //userService.addUser(user);
-             //user.setEmail("updated@kk");
-            // userService.deleteUser(55);
-            //userService.UpdateUser(user,52);
-            
-             //System.out.println(userService.getUserByName("nom"));
+             userService.addUser(user);
+             user.setEmail("updated@kk");
              
-             System.out.println(userService.getUserByCIN("12"));
-            
-            //List<User>users=userService.afficherUser();
-             //System.out.println(users);
+             userService.UpdateUser(user,52);
         }catch (SQLException e) {
-            System.out.println("Personne non ajouté: "+e);
-        }
-        /*catch (NoSuchAlgorithmException ex) {
             System.out.println("Personne non ajouté");
-        }*/
+        }
+        catch (NoSuchAlgorithmException ex) {
+            System.out.println("Personne non ajouté");
+        }
+         
+         
+         
+        // TODO code application logic here
+    }
          
          
          
         // TODO code application logic here
     }
     
-}
+

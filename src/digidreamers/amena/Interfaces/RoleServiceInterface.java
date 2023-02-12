@@ -6,6 +6,7 @@
 package digidreamers.amena.Interfaces;
 
 import digidreamers.amena.Models.Role;
+import digidreamers.amena.Models.User;
 import java.sql.SQLException;
 
 /**
@@ -15,4 +16,6 @@ import java.sql.SQLException;
 public interface RoleServiceInterface {
    public void addRole (Role role) throws SQLException;
    public void updateRole (Role role,int id)throws SQLException;
+   public void deleteRole (int id)throws SQLException;
+
 }

@@ -55,6 +55,10 @@ public class User {
        
     }
 
+    public User(String string, String tn, String nom, String pren, Date date, boolean b, String mdp, String aa, int role) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
    
 
     public int getId() {
