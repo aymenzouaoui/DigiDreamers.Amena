@@ -56,6 +56,7 @@ public class UserService implements UserServiceInterface{
                 + u.getMot_pass() + "', '" 
                 + u.getEmail()+ "')";
         stm.executeUpdate(querry);
+        //sddq
        } catch (SQLException ex) {
             System.out.println("Personne non ajouté");
                       } catch (NoSuchAlgorithmException e) {

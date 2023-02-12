@@ -6,6 +6,7 @@
 package digidreamers.amena.Interfaces;
 
 import digidreamers.amena.Models.User;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 /**
@@ -14,5 +15,6 @@ import java.sql.SQLException;
  */
 public interface UserServiceInterface {
     public void addUser(User user) throws SQLException;
+    public void UpdateUser(User u,int id) throws SQLException, NoSuchAlgorithmException ;
     
 }
