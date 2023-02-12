@@ -120,7 +120,7 @@ public List<User> afficherUser() {
     }
 
 
- public User getIDByName(String name) throws SQLException{
+ public User getUserByName(String name) throws SQLException{
     String querry="SELECT * FROM `user` WHERE `nom`='"+name+"'";
     Statement stm=cnx.createStatement();
     
@@ -144,7 +144,7 @@ public List<User> afficherUser() {
     
     
     
-    public User getNameByCIN(String cin ) throws SQLException {
+    public User getUserByCIN(String cin ) throws SQLException {
        String querry="SELECT *  FROM `user` WHERE `cin`="+cin;
        Statement stm=cnx.createStatement();
        ResultSet rs=stm.executeQuery(querry);

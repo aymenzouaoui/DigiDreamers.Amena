@@ -35,9 +35,9 @@ public class DigiDreamersAmena {
             // userService.deleteUser(55);
             //userService.UpdateUser(user,52);
             
-             //System.out.println(userService.getIDByName("nom"));
+             //System.out.println(userService.getUserByName("nom"));
              
-             System.out.println(userService.getNameByCIN("12"));
+             System.out.println(userService.getUserByCIN("12"));
             
             //List<User>users=userService.afficherUser();
              //System.out.println(users);
