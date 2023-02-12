@@ -11,6 +11,7 @@ import digidreamers.amena.Services.UserService;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -29,16 +30,23 @@ public class DigiDreamersAmena {
         
          try{
              UserService userService=new UserService();
-             userService.addUser(user);
-             user.setEmail("updated@kk");
+             //userService.addUser(user);
+             //user.setEmail("updated@kk");
+            // userService.deleteUser(55);
+            //userService.UpdateUser(user,52);
+            
+             //System.out.println(userService.getIDByName("nom"));
              
-             userService.UpdateUser(user,52);
+             System.out.println(userService.getNameByCIN("12"));
+            
+            //List<User>users=userService.afficherUser();
+             //System.out.println(users);
         }catch (SQLException e) {
-            System.out.println("Personne non ajouté");
+            System.out.println("Personne non ajouté: "+e);
         }
-        catch (NoSuchAlgorithmException ex) {
+        /*catch (NoSuchAlgorithmException ex) {
             System.out.println("Personne non ajouté");
-        }
+        }*/
          
          
          
