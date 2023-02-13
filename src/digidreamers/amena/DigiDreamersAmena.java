@@ -7,6 +7,7 @@ package digidreamers.amena;
 
 import digidreamers.amena.Models.Role;
 import digidreamers.amena.Models.User;
+import digidreamers.amena.Services.RoleService;
 import digidreamers.amena.Services.UserService;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
@@ -24,22 +25,45 @@ public class DigiDreamersAmena {
      */
         public static void main(String[] args) {
         Date date=new java.sql.Date(new java.util.Date().getTime());
-        Role role=new Role(1,"admin");
-        User user=new User("12", "tn", "nom", "pren",date , true, "mdp", "a@a",  role);
-        System.out.println(user.toString());
+       // Role role=new Role(20,"admin");
+        /* Role a=new Role(34,"client");
+          Role b=new Role(35,"transporteur");
+           Role c=new Role(36,"transporteu_s");
+          
+        
+        User user1=new User("12", "tn", "nom", "pren",date , true, "mdp", "a@a",  a);
+         User user2=new User("12", "tn", "nom", "pren",date , true, "mdp", "a@a",  b);
+          User user3=new User("12", "tn", "nom", "pren",date , true, "mdp", "a@a",  c);
+        */  
+        //System.out.println(user1.toString());
         
          try{
-             UserService userService=new UserService();
-             userService.addUser(user);
-             user.setEmail("updated@kk");
              
-             userService.UpdateUser(user,52);
+              /*RoleService role =new RoleService();
+            role.addRole(a);
+            role.addRole(b);
+            role.addRole(c);
+            
+            */
+              
+            UserService userService=new UserService();
+             //userService.addUser(user1);
+              // userService.addUser(user2);
+               //  userService.addUser(user3);
+             
+             //user.setEmail("updated@kk");
+            
+            // role.deleteRole(23);
+             
+             System.out.println(userService.getUserByName("nohhm"));
+             System.out.println(userService.getUserByID(235));
+             
+             //userService.UpdateUser(user,52);
         }catch (SQLException e) {
             System.out.println("Personne non ajouté");
         }
-        catch (NoSuchAlgorithmException ex) {
-            System.out.println("Personne non ajouté");
-        }
+            // TODO code application logic here
+
          
          
          

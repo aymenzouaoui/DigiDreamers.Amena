@@ -1,4 +1,3 @@
-@@ -0,0 +1,96 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,8 +15,11 @@ import java.util.Base64;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -57,6 +59,7 @@ public class UserService implements UserServiceInterface{
                 + u.getMot_pass() + "', '" 
                 + u.getEmail()+ "')";
         stm.executeUpdate(querry);
+        //sddq
        } catch (SQLException ex) {
             System.out.println("Personne non ajouté");
                       } catch (NoSuchAlgorithmException e) {
@@ -84,7 +87,101 @@ public class UserService implements UserServiceInterface{
     pla.setInt(9, id);
     pla.executeUpdate();
 }
+     
+     public void deleteUser(int id) {
+        try {
+            String req = "DELETE FROM `user` WHERE id = " + id;
+            Statement st = cnx.createStatement();
+            st.executeUpdate(req);
+            System.out.println("Personne deleted !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+public List<User> afficherUser() {
+       List<User> list = new ArrayList<>();
+        try {
+            String req = "Select * from user";
+            Statement stm = cnx.createStatement();
+           
+            ResultSet RS= stm.executeQuery(req);
+            while(RS.next()){
+             User p = new User();
+             p.setNom(RS.getString("nom"));
+             p.setId(RS.getInt(1));
+             p.setPrenom(RS.getString(3));
+             list.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
 
+        return list;
+    }
+
+
+ public User getUserByName(String name) throws SQLException{
+    String querry="SELECT * FROM `user` WHERE `nom`='"+name+"'";
+    Statement stm=cnx.createStatement();
+    
+    User user=new User ();
+    
+    ResultSet rs=stm.executeQuery(querry);
+   
+        while (rs.next()) {            
+            
+            user.setAdress(rs.getString("adress"));
+            user.setNom(rs.getString("nom"));
+            user.setPrenom(rs.getString("prenom"));
+            user.setMot_pass(rs.getString("motPass"));
+            user.setEmail(rs.getString("email"));
+            user.setCin(rs.getString("cin"));
+            
+        }
+    return user;
+    
+    }
+    
+    
+    
+    public User getUserByCIN(String cin ) throws SQLException {
+       String querry="SELECT *  FROM `user` WHERE `cin`="+cin;
+       Statement stm=cnx.createStatement();
+       ResultSet rs=stm.executeQuery(querry);
+       
+       User user=new User ();
+        while (rs.next()) {            
+            
+            user.setAdress(rs.getString("adress"));
+            user.setNom(rs.getString("nom"));
+            user.setPrenom(rs.getString("prenom"));
+            user.setMot_pass(rs.getString("motPass"));
+            user.setEmail(rs.getString("email"));
+            user.setCin(rs.getString("cin"));
+            
+        }
+    return user;
+    }
+    
+    public User getUserByID(int id ) throws SQLException {
+       String querry="SELECT *  FROM `user` WHERE `id`="+id;
+       Statement stm=cnx.createStatement();
+       ResultSet rs=stm.executeQuery(querry);
+       
+       User user=new User ();
+        while (rs.next()) {            
+            user.setId(rs.getInt("id"));
+            user.setAdress(rs.getString("adress"));
+            user.setNom(rs.getString("nom"));
+            user.setPrenom(rs.getString("prenom"));
+            user.setMot_pass(rs.getString("motPass"));
+            user.setEmail(rs.getString("email"));
+            user.setCin(rs.getString("cin"));
+            
+        }
+    return user;
+    }
+    
      
     private static String hashPassword(String password) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
