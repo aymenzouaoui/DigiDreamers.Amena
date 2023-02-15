@@ -160,9 +160,9 @@ public List<User> afficherUser() {
             user.setCin(rs.getString("cin"));
             
         }
-    return user;
+       return user;
     }
-    
+
     public User getUserByID(int id ) throws SQLException {
        String querry="SELECT *  FROM `user` WHERE `id`="+id;
        Statement stm=cnx.createStatement();
@@ -188,7 +188,35 @@ public List<User> afficherUser() {
         byte[] encodedhash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
         return Base64.getEncoder().encodeToString(encodedhash);
     }
+/*
+    
+    
+    
+    
+    
+  public void createUser(User user) {
+    try {
+        String query = "INSERT INTO `user`(`nom`, `prenom`, `adress`, `cin`, `dateNaissance`, `dateCreationC`, `status`, `role`, `motPass`, `email`) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement statement = cnx.prepareStatement(query);
+        statement.setString(1, user.getNom());
+        statement.setString(2, user.getPrenom());
+        statement.setString(3, user.getAdress());
+        statement.setString(4, user.getCin());
+        statement.setDate(5, new java.sql.Date(user.getDate_naissance().getTime()));
+        statement.setDate(6, new java.sql.Date(user.getDate_creation_c().getTime()));
+        statement.setBoolean(7, user.isStatus());
+        statement.setInt(8, user.getRole().getId());
+        statement.setString(9, user.getMot_pass());
+        statement.setString(10, user.getEmail());
+        
+        statement.executeUpdate();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
 
+    */
      
 
 }
