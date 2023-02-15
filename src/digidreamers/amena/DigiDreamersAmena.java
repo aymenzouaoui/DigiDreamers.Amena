@@ -5,8 +5,10 @@
  */
 package digidreamers.amena;
 
+import digidreamers.amena.Models.Message;
 import digidreamers.amena.Models.Role;
 import digidreamers.amena.Models.User;
+import digidreamers.amena.Services.ChatService;
 import digidreamers.amena.Services.RoleService;
 import digidreamers.amena.Services.UserService;
 import java.security.NoSuchAlgorithmException;
@@ -23,8 +25,9 @@ public class DigiDreamersAmena {
     /**
      * @param args the command line arguments
      */
-        public static void main(String[] args) {
+        public static void main(String[] args) throws SQLException {
         Date date=new java.sql.Date(new java.util.Date().getTime());
+        Message m =new Message(2,24,"nknndsdsin",date);
        // Role role=new Role(20,"admin");
         /* Role a=new Role(34,"client");
           Role b=new Role(35,"transporteur");
@@ -37,7 +40,7 @@ public class DigiDreamersAmena {
         */  
         //System.out.println(user1.toString());
         
-         try{
+        // try{
              
               /*RoleService role =new RoleService();
             role.addRole(a);
@@ -54,13 +57,17 @@ public class DigiDreamersAmena {
              //user.setEmail("updated@kk");
             
             // role.deleteRole(23);
+            ChatService chatService =new ChatService();
+            chatService.addChat(m);
+            userService.deleteUser(234);
+            
              
-             System.out.println(userService.getUserByName("nohhm"));
-             System.out.println(userService.getUserByID(235));
+            // System.out.println(userService.getUserByName("nohhm"));
+             //System.out.println(userService.getUserByID(235));
              
              //userService.UpdateUser(user,52);
-        }catch (SQLException e) {
-            System.out.println("Personne non ajouté");
+       // }catch (SQLException e) {
+            //System.out.println("Personne non ajouté");
         }
             // TODO code application logic here
 
@@ -73,6 +80,6 @@ public class DigiDreamersAmena {
          
          
         // TODO code application logic here
-    }
+
     
 
