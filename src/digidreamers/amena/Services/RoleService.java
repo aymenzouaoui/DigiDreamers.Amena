@@ -7,7 +7,6 @@ package digidreamers.amena.Services;
 
 import digidreamers.amena.Interfaces.RoleServiceInterface;
 import digidreamers.amena.Models.Role;
-import digidreamers.amena.Models.User;
 import digidreamers.amena.Utils.MyConnection;
 import java.sql.Connection;
 import java.sql.SQLException;

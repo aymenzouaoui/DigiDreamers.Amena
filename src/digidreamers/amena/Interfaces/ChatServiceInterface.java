@@ -5,8 +5,6 @@
  */
 package digidreamers.amena.Interfaces;
 
-import digidreamers.amena.Models.Message;
-
 /**
  *
  * @author aymen

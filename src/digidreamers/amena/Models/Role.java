@@ -10,8 +10,9 @@ package digidreamers.amena.Models;
  * @author aymen
  */
 public class Role {
-    private int id ;
-    private String role ;
+
+    private int id;
+    private String role;
 
     public Role(int id, String role) {
         this.id = id;

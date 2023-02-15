@@ -12,7 +12,8 @@ import java.util.Date;
  * @author aymen
  */
 public class Message {
-     private int id;
+
+    private int id;
     private int senderId;
     private int receiverId;
     private String content;
@@ -80,5 +81,5 @@ public class Message {
     public String toString() {
         return "Message{" + "id=" + id + ", senderId=" + senderId + ", receiverId=" + receiverId + ", content=" + content + ", timestamp=" + timestamp + '}';
     }
-    
+
 }
