@@ -5,12 +5,18 @@
  */
 package digidreamers.amena.Interfaces;
 
+import java.util.List;
+
 /**
  *
  * @author aymen
  */
-public class ChatServiceInterface {
+public interface InterfaceCRUD<T> {
+    public void ajouter(T t);
+    public void modifier(int id,T t);
+    public void supprimer(int id) ;
+    public List<T> afficher(); 
+    public T getByID(int id); 
     
-
     
 }

@@ -5,7 +5,8 @@
  */
 package digidreamers.amena.Services;
 
-import digidreamers.amena.Interfaces.UserServiceInterface;
+import digidreamers.amena.Interfaces.InterfaceCRUD;
+
 import digidreamers.amena.Models.User;
 import digidreamers.amena.Utils.MyConnection;
 import java.nio.charset.StandardCharsets;
@@ -19,12 +20,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author aymen
  */
-public class UserService implements UserServiceInterface {
+public class UserService implements InterfaceCRUD <User> {
 
     Connection cnx = MyConnection.getInstance().getConnection();
     Statement stm;
@@ -34,7 +37,8 @@ public class UserService implements UserServiceInterface {
         stm = cnx.createStatement();
     }
 
-    public void addUser(User u) {
+    @Override
+    public void ajouter(User u) {
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         int stat = 0;
         if (u.isStatus()) {
@@ -68,8 +72,12 @@ public class UserService implements UserServiceInterface {
     }
 
     // update avec hashage
-    public void UpdateUser(User u, int id) throws SQLException, NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
+    @Override
+    public void modifier(int id,User u) {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        
         byte[] hashedPassword = md.digest(u.getMot_pass().getBytes(StandardCharsets.UTF_8));
 
         PreparedStatement pla = cnx.prepareStatement("UPDATE user SET nom=?,prenom=?,adress=?,cin=?,dateNaissance=?,role=?,motPass=?,email=? where id=?");
@@ -84,9 +92,15 @@ public class UserService implements UserServiceInterface {
         pla.setString(8, u.getEmail());
         pla.setInt(9, id);
         pla.executeUpdate();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public void deleteUser(int id) {
+    @Override
+    public void supprimer(int id) {
         try {
             String req = "DELETE FROM `user` WHERE id = " + id;
             Statement st = cnx.createStatement();
@@ -97,7 +111,7 @@ public class UserService implements UserServiceInterface {
         }
     }
 
-    public List<User> afficherUser() {
+    public List<User> afficher() {
         List<User> list = new ArrayList<>();
         try {
             String req = "Select * from user";
@@ -159,12 +173,15 @@ public class UserService implements UserServiceInterface {
         return user;
     }
 
-    public User getUserByID(int id) throws SQLException {
+    @Override
+    public User  getByID(int id) {
+         User user = new User();
+        try{
         String querry = "SELECT *  FROM `user` WHERE `id`=" + id;
         Statement stm = cnx.createStatement();
         ResultSet rs = stm.executeQuery(querry);
 
-        User user = new User();
+       
         while (rs.next()) {
             user.setId(rs.getInt("id"));
             user.setAdress(rs.getString("adress"));
@@ -173,7 +190,8 @@ public class UserService implements UserServiceInterface {
             user.setMot_pass(rs.getString("motPass"));
             user.setEmail(rs.getString("email"));
             user.setCin(rs.getString("cin"));
-
+}} catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
         return user;
     }
@@ -213,4 +231,5 @@ public class UserService implements UserServiceInterface {
 
      */
 
+  
 }

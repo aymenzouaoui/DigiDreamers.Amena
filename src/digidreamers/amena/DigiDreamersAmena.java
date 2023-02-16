@@ -24,6 +24,7 @@ public class DigiDreamersAmena {
 
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
      */
         public static void main(String[] args) throws SQLException {
         Date date=new java.sql.Date(new java.util.Date().getTime());
@@ -58,8 +59,9 @@ public class DigiDreamersAmena {
             
             // role.deleteRole(23);
             ChatService chatService =new ChatService();
-            chatService.addChat(m);
-            userService.deleteUser(234);
+         
+            chatService.ajouter(m);
+            userService.supprimer(24);
             
              
             // System.out.println(userService.getUserByName("nohhm"));
